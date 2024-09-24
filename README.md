@@ -38,31 +38,24 @@ The project is divided into two main directories:
     cd frontend && npm install
     cd ../backend && npm install
     ```
-3. Set up environment variables:
-- Create a `.env` file in the `backend/` directory
-- Add the following variables:
-  ```
-  MONGODB_URI=your_mongodb_connection_string
-  ```
-- Note: The Anthropic API key is pre-configured on the backend for your convenience.
-4. Start the backend server:
+3. Start the backend server:
   ```
   cd backend && npm start
   ```
-5. Start the frontend development server:
+4. Start the frontend development server:
    ```
    cd frontend && npm start
    ```
-6. The application should now be running on `http://localhost:3000`.
+5. The application should now be running on `http://localhost:3000`.
 
 ## API Usage
 
-This application comes pre-configured with an Anthropic API key for Claude, allowing immediate use of the chat functionality. There's no need for users to obtain or configure their own API keys.
+This application comes pre-configured with both an Anthropic API key for Claude and a MongoDB database connection. There's no need for users to obtain or configure their own API keys or database connections.
 
 Please note:
-- The API key is securely stored on the backend and is not exposed to frontend users.
+- All necessary credentials are securely stored on the backend and are not exposed to frontend users.
 - Usage is monitored and may be subject to rate limiting to ensure fair use for all users.
-- If you encounter any issues related to API access, please contact the project maintainer.
+- If you encounter any issues related to API access or database connectivity, please contact the project maintainer.
 
 ## Frontend Components
 
@@ -94,7 +87,7 @@ This project is licensed under the MIT License.
 
 ## Disclaimer
 
-This application uses a shared API key for demonstration purposes. In a production environment, it's recommended to implement proper API key management and usage monitoring.
+This application uses shared API keys and database connections for demonstration purposes. In a production environment, it's recommended to implement proper credential management, security measures, and usage monitoring.
 
 
 
