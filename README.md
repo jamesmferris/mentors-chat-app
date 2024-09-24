@@ -34,19 +34,25 @@ The project is divided into two main directories:
 
 1. Clone the repository
 2. Install dependencies for both frontend and backend:
+    ```
     cd frontend && npm install
     cd ../backend && npm install
+    ```
 3. Set up environment variables:
 - Create a `.env` file in the `backend/` directory
 - Add the following variables:
   ```
   MONGODB_URI=your_mongodb_connection_string
   ```
-Note: The Anthropic API key is pre-configured on the backend for your convenience.
+- Note: The Anthropic API key is pre-configured on the backend for your convenience.
 4. Start the backend server:
-    cd backend && npm start
+  ```
+  cd backend && npm start
+  ```
 5. Start the frontend development server:
-    cd frontend && npm start
+   ```
+   cd frontend && npm start
+   ```
 6. The application should now be running on `http://localhost:3000`.
 
 ## API Usage
