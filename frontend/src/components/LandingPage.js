@@ -86,7 +86,7 @@ const LandingPage = () => {
     }
   };
 
-  // Handler for modal form submission
+  // Updated handler for modal form submission
   const handleModalSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -99,7 +99,17 @@ const LandingPage = () => {
       }
     } catch (error) {
       console.error("Error:", error);
-      alert(error.response?.data?.message || "An error occurred. Please try again.");
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        alert(error.response.data.message || `An error occurred during ${isLogin ? "login" : "signup"}.`);
+      } else if (error.request) {
+        // The request was made but no response was received
+        alert("No response received from server. Please try again.");
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        alert("An error occurred. Please try again.");
+      }
     }
   };
 

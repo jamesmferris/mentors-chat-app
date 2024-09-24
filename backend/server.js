@@ -699,6 +699,31 @@ app.post("/api/signup", async (req, res) => {
   }
 });
 
+// New POST route for user login
+app.post("/api/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Find user by email
+    const user = await client.db("mentorChat").collection("users").findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({ success: false, message: "User not found" });
+    }
+
+    // Check if password matches
+    if (user.password !== password) {
+      return res.status(400).json({ success: false, message: "Invalid password" });
+    }
+
+    // Login successful
+    res.status(200).json({ success: true, message: "Login successful" });
+  } catch (error) {
+    console.error("Error during login:", error);
+    res.status(500).json({ success: false, message: "An error occurred during login" });
+  }
+});
+
 // Start the server and connect to MongoDB
 connectToMongoDB().then(() => {
   app.listen(port, () => {
