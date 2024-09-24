@@ -182,7 +182,7 @@ const LandingPage = () => {
 
       {/* Features section */}
       <section className="features">
-        <h2>What you'll experience</h2>
+        <h2>What you'll experience:</h2>
         <div className="feature-grid">
           <div className="feature">
             <img src={debateIcon} alt="Debate icon" />

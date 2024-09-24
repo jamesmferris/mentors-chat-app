@@ -50,7 +50,6 @@ const ChatPage = () => {
       kant: "Good day to you, seeker of knowledge. I am Immanuel Kant. What moral quandary or question of reason brings you to my door? Let us examine it through the lens of universal law and human dignity.",
       nietzsche: "So, you've arrived at my doorstep! I am Friedrich Nietzsche. What societal norms or personal limitations do you wish to overcome? Speak boldly, for to live is to suffer, to survive is to find some meaning in the suffering. Let us dance with your dragons!",
       buddha: "Peace be with you, gentle seeker. I am the Buddha. What suffering or attachment troubles your mind? Remember, in the end, only three things matter: how much you loved, how gently you lived, and how gracefully you let go of things not meant for you. Let us explore the path to your inner peace.",
-      // Add welcome messages for new mentors
       jobs: "Welcome, innovator! I'm Steve Jobs. What revolutionary ideas are brewing in your mind? Remember, the people who are crazy enough to think they can change the world are the ones who do. Let's explore your vision together.",
       ford: "Greetings, ambitious one. I'm Henry Ford. What challenges in industry or society are you looking to overcome? Remember, whether you think you can, or you think you can't – you're right. Let's discuss your goals and how to achieve them.",
       jesus: "Peace be with you, my child. I am Jesus. What burdens your heart, and how may I guide you towards love and compassion? Remember, love your neighbor as yourself. Let us explore the path of righteousness together.",
@@ -60,6 +59,7 @@ const ChatPage = () => {
       beauvoir: "Bonjour, free thinker! I am Simone de Beauvoir. What societal norms or expectations are you questioning? Remember, one is not born, but rather becomes, a woman - or indeed, oneself. Let us examine the constructs that shape your reality and how you might transcend them.",
       teresa: "Blessings, compassionate one. I am Mother Teresa. What suffering in the world moves your heart to action? Remember, not all of us can do great things, but we can do small things with great love. Let us explore how you can bring more love and kindness into your corner of the world.",
       roosevelt: "Greetings, fellow citizen of the world. I'm Eleanor Roosevelt. What changes do you wish to see in your community or beyond? Remember, you must do the thing you think you cannot do. Let's discuss how you can actively participate in shaping a better world.",
+      // Add welcome messages for new mentors
     }),
     []
   );
