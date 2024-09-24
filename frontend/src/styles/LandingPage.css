@@ -1,0 +1,222 @@
+/* Reset default styles and set base font */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Cormorant", serif;
+  height: 100%;
+  color: #333;
+  background-color: #fff;
+}
+
+/* Main container for the landing page */
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #fff;
+}
+
+/* Logo styling */
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+/* Navigation button styles */
+nav button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Cormorant", serif;
+  font-size: 16px;
+}
+
+.login-btn {
+  background-color: transparent;
+  color: #333;
+}
+
+.purchase-btn {
+  background-color: #1a1a1a;
+  color: white;
+}
+
+/* Main content area */
+main {
+  display: flex;
+  padding: 60px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content {
+  flex: 1;
+  max-width: 600px;
+}
+
+/* Heading styles */
+h1 {
+  font-size: 48px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: #0066cc;
+}
+
+/* Paragraph styles in main content */
+main p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.signup-btn {
+  padding: 12px;
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.signup-btn:hover {
+  background-color: #333;
+}
+
+/* Promo text style */
+.promo {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Mentor carousel styles */
+.mentor-carousel {
+  display: flex;
+  overflow-x: hidden;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.mentor-carousel img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.mentor-carousel > div {
+  display: flex;
+  animation: scroll 30s linear infinite;
+}
+
+/* Features section styles */
+.features {
+  background-color: #f9f9f9;
+  padding: 60px 40px;
+}
+
+.features h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature {
+  text-align: center;
+}
+
+.feature img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+.feature h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Footer styles */
+footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
