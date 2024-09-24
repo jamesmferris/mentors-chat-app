@@ -39,9 +39,9 @@ The project is divided into two main directories:
     cd ../backend && npm install
     ```
 3. Start the backend server:
-  ```
-  cd backend && npm start
-  ```
+    ```
+    cd backend && npm start
+    ```
 4. Start the frontend development server:
    ```
    cd frontend && npm start
