@@ -16,6 +16,11 @@ import jobsImage from "../images/jobs.jpg";
 import fordImage from "../images/ford.jpg";
 import jesusImage from "../images/jesus.jpg";
 import muhammadImage from "../images/muhammad.jpg";
+import arcImage from "../images/arc.jpg";
+import parksImage from "../images/parks.jpg";
+import rooseveltImage from "../images/roosevelt.jpg";
+import teresaImage from "../images/teresa.jpg";
+import beauvoirImage from "../images/beauvoir.jpg";
 
 // Define the mentors array with detailed information and categories
 export const mentors = [
@@ -122,6 +127,46 @@ export const mentors = [
     description: "Founder of Islam.",
     quote: "The best of people are those who bring most benefit to the rest of mankind.",
     categories: ["Religious Figure", "Spiritual Leader"],
+  },
+  {
+    id: "arc",
+    name: "Joan of Arc",
+    image: arcImage,
+    description: "French heroine and Catholic saint.",
+    quote: "I am not afraid; I was born to do this.",
+    categories: ["Military Leader", "Saint", "Historical Figure"],
+  },
+  {
+    id: "parks",
+    name: "Rosa Parks",
+    image: parksImage,
+    description: "American civil rights activist.",
+    quote: "You must never be fearful about what you are doing when it is right.",
+    categories: ["Civil Rights Activist", "Historical Figure"],
+  },
+  {
+    id: "beauvoir",
+    name: "Simone de Beauvoir",
+    image: beauvoirImage,
+    description: "French existentialist philosopher and feminist theorist.",
+    quote: "One is not born, but rather becomes, a woman.",
+    categories: ["Philosopher", "Feminist", "Writer"],
+  },
+  {
+    id: "teresa",
+    name: "Mother Teresa",
+    image: teresaImage,
+    description: "Roman Catholic nun known for her charity work.",
+    quote: "Not all of us can do great things. But we can do small things with great love.",
+    categories: ["Religious Figure", "Humanitarian", "Saint"],
+  },
+  {
+    id: "roosevelt",
+    name: "Eleanor Roosevelt",
+    image: rooseveltImage,
+    description: "American political figure and human rights activist.",
+    quote: "The future belongs to those who believe in the beauty of their dreams.",
+    categories: ["Political Figure", "Activist", "Diplomat"],
   },
 ];
 

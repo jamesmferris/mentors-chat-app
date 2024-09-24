@@ -19,6 +19,11 @@ import debateIcon from "../images/debate-icon.png";
 import wisdomIcon from "../images/wisdom-icon.png";
 import perspectiveIcon from "../images/perspective-icon.png";
 import growthIcon from "../images/growth-icon.png";
+import arcImage from "../images/arc.jpg";
+import parksImage from "../images/parks.jpg";
+import rooseveltImage from "../images/roosevelt.jpg";
+import teresaImage from "../images/teresa.jpg";
+import beauvoirImage from "../images/beauvoir.jpg";
 
 // Array of mentors with their images (unchanged)
 const mentors = [
@@ -33,6 +38,11 @@ const mentors = [
   { name: "Jesus", image: jesusImage },
   { name: "Steve Jobs", image: jobsImage },
   { name: "Muhammad", image: muhammadImage },
+  { name: "Arc", image: arcImage },
+  { name: "Parks", image: parksImage },
+  { name: "Roosevelt", image: rooseveltImage },
+  { name: "Teresa", image: teresaImage },
+  { name: "Beauvoir", image: beauvoirImage },
 ];
 
 const LandingPage = () => {
