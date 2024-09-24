@@ -158,7 +158,6 @@ const HomePage = () => {
       {/* Header section */}
       <header>
         <h1>Mentors</h1>
-        <p className="subheader">Seek wisdom and advice from history's greatest minds</p>
         {/* Sign Out Button */}
         <button onClick={handleSignOut} className="sign-out-button">
           Sign Out
@@ -166,12 +165,16 @@ const HomePage = () => {
       </header>
 
       {/* Faceted search filters */}
-      <div className="filters">
-        {getUniqueCategories().map((category) => (
-          <button key={category} onClick={() => toggleFilter(category)} className={`filter-btn ${activeFilters.includes(category) ? "active" : ""}`}>
-            {category}
-          </button>
-        ))}
+      {/* New: Added container and title for filters */}
+      <div className="filters-container">
+        <h2>Filter Mentors by Category:</h2>
+        <div className="filters">
+          {getUniqueCategories().map((category) => (
+            <button key={category} onClick={() => toggleFilter(category)} className={`filter-btn ${activeFilters.includes(category) ? "active" : ""}`}>
+              {category}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Mentor grid section */}
@@ -179,15 +182,18 @@ const HomePage = () => {
         {filteredMentors.map((mentor) => (
           <Link to={`/chat/${mentor.id}`} key={mentor.id} className="mentor-card">
             <img src={mentor.image} alt={mentor.name} />
-            <h2>{mentor.name}</h2>
-            <p className="description">{mentor.description}</p>
-            <p className="quote">"{mentor.quote}"</p>
-            <div className="categories">
-              {mentor.categories.map((category) => (
-                <span key={category} className="category-tag">
-                  {category}
-                </span>
-              ))}
+            {/* New: Added mentor-info container for better styling */}
+            <div className="mentor-info">
+              <h2>{mentor.name}</h2>
+              <p className="description">{mentor.description}</p>
+              <p className="quote">"{mentor.quote}"</p>
+              <div className="categories">
+                {mentor.categories.map((category) => (
+                  <span key={category} className="category-tag">
+                    {category}
+                  </span>
+                ))}
+              </div>
             </div>
           </Link>
         ))}

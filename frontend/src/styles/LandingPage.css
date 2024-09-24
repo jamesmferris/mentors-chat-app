@@ -30,28 +30,13 @@ header h1 {
 }
 
 /* Navigation button styles */
-nav button {
-  padding: 10px 20px;
-  margin-left: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: "Cormorant", serif;
-  font-size: 18px;
-}
-
 .login-btn {
-  background-color: #f0f0f0; /* Light gray background */
-  color: #333;
   padding: 8px 16px;
-  border: 1px solid #e1dada;
-  border-radius: 4px;
+  border-radius: 8px;
   font-weight: bold;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.login-btn:hover {
-  background-color: #333;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: "Cormorant", serif;
   color: white;
 }
 
