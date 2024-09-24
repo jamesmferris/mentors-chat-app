@@ -18,7 +18,7 @@ function App() {
           {/* Route for the home page (after login) */}
           <Route path="/home" element={<HomePage />} />
           {/* Route for individual chat pages */}
-          <Route path="/chat/:philosopherId" element={<ChatPage />} />
+          <Route path="/chat/:mentorId" element={<ChatPage />} />
         </Routes>
       </div>
     </Router>

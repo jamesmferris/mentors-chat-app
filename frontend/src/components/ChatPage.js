@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/ChatPage.css";
 
@@ -18,14 +18,21 @@ const ChatPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   // State to store any error messages
   const [error, setError] = useState(null);
+  // State to control send button visibility
+  const [showSendButton, setShowSendButton] = useState(false);
+  // New state for managing textarea height
+  const [textareaHeight, setTextareaHeight] = useState("40px");
 
   // Get the mentor ID from the URL parameters
   const { mentorId } = useParams();
 
+  // Use the useNavigate hook for programmatic navigation
+  const navigate = useNavigate();
+
   // Reference for auto-scrolling to the bottom of the chat
   const messagesEndRef = useRef(null);
   // Reference for the textarea element
-  const textareaRef = useRef(null);
+  const inputRef = useRef(null);
 
   // Find the current mentor based on the URL parameter
   const mentor = mentors.find((m) => m.id === mentorId);
@@ -62,7 +69,7 @@ const ChatPage = () => {
 
     // Set the full conversation history (including hidden initial message)
     setConversationHistory([
-      { role: "user", content: "Hello" }, // Hidden initial user message
+      { role: "user", content: "Hello, I'm here to seek wisdom." },
       { role: "assistant", content: welcomeMessage },
     ]);
   }, [mentorId, welcomeMessages, mentor]);
@@ -72,48 +79,56 @@ const ChatPage = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [displayMessages]);
 
-  // Function to adjust textarea height
-  const adjustTextareaHeight = () => {
-    const textarea = textareaRef.current;
-    if (textarea) {
-      textarea.style.height = "auto";
-      textarea.style.height = `${textarea.scrollHeight}px`;
-    }
+  // Function to adjust textarea height dynamically
+  const adjustTextareaHeight = (e) => {
+    const textarea = e.target;
+    const minHeight = 40;
+    const maxHeight = 120;
+
+    // Reset height to auto to get the correct scrollHeight
+    textarea.style.height = "auto";
+
+    // Set new height based on scrollHeight, within min and max limits
+    const newHeight = Math.min(Math.max(textarea.scrollHeight, minHeight), maxHeight);
+    textarea.style.height = `${newHeight}px`;
+    setTextareaHeight(`${newHeight}px`);
   };
 
-  // Effect to adjust textarea height when input changes
-  useEffect(() => {
-    adjustTextareaHeight();
-  }, [input]);
+  // Function to handle input changes
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+    setShowSendButton(e.target.value.trim().length > 0);
+    adjustTextareaHeight(e);
+  };
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!input.trim()) return; // Prevent sending empty messages
+    if (!input.trim() || isLoading) return;
 
-    // Create a new user message object
     const userMessage = { text: input, sender: "user" };
-
-    // Update display messages and conversation history
     setDisplayMessages((prev) => [...prev, userMessage]);
-    setConversationHistory((prev) => [...prev, { role: "user", content: input }]);
 
-    // Clear input field and set loading state
+    // Combine consecutive user messages
+    let updatedHistory = [...conversationHistory];
+    if (updatedHistory.length > 0 && updatedHistory[updatedHistory.length - 1].role === "user") {
+      updatedHistory[updatedHistory.length - 1].content += "\n" + input;
+    } else {
+      updatedHistory.push({ role: "user", content: input });
+    }
+
+    setConversationHistory(updatedHistory);
     setInput("");
     setIsLoading(true);
     setError(null);
 
     try {
-      // Send the full conversation history to the backend
       const response = await axios.post("http://localhost:3001/api/chat", {
-        messages: conversationHistory,
+        messages: updatedHistory,
         mentor: mentorId,
       });
 
-      // Create a new bot message object from the response
       const botMessage = { text: response.data.reply, sender: "bot" };
-
-      // Update display messages and conversation history with the bot's reply
       setDisplayMessages((prev) => [...prev, botMessage]);
       setConversationHistory((prev) => [...prev, { role: "assistant", content: response.data.reply }]);
     } catch (error) {
@@ -122,11 +137,9 @@ const ChatPage = () => {
     } finally {
       setIsLoading(false);
     }
-  };
 
-  // Function to handle input change
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
+    // Reset textarea height after submission
+    setTextareaHeight("40px");
   };
 
   // Function to handle key press in textarea
@@ -137,6 +150,11 @@ const ChatPage = () => {
     }
   };
 
+  // Function to handle going back to the homepage
+  const handleBackToMentors = () => {
+    navigate("/home"); // Navigate to the home page
+  };
+
   // If no mentor is found, render an error message
   if (!mentor) {
     return <div>Mentor not found</div>;
@@ -144,11 +162,16 @@ const ChatPage = () => {
 
   // Render the chat page
   return (
+    // Main container for the chat page, with dynamic class based on mentor ID
     <div className={`chat-page ${mentorId}`}>
-      <Link to="/" className="back-button">
+      {/* Back button to return to mentor selection */}
+      <button onClick={handleBackToMentors} className="back-button">
         ← Back to Mentors
-      </Link>
+      </button>
+
+      {/* Chat interface container */}
       <div className="chat-container">
+        {/* Header section with mentor information */}
         <div className="mentor-header">
           <img src={mentor.image} alt={mentor.name} className="mentor-image" />
           <div className="mentor-info">
@@ -156,29 +179,44 @@ const ChatPage = () => {
             <p className="mentor-quote">"{mentor.quote}"</p>
           </div>
         </div>
+
+        {/* Messages display area */}
         <div className="messages">
+          {/* Map through and display all messages */}
           {displayMessages.map((message, index) => (
             <div key={index} className={`message ${message.sender}`}>
               {message.text}
             </div>
           ))}
+
+          {/* Loading indicator when waiting for mentor response */}
           {isLoading && (
             <div className="message bot loading">
               <div className="spinner"></div>
               <p>{mentor.name} is contemplating...</p>
             </div>
           )}
+
+          {/* Ref for auto-scrolling to the latest message */}
           <div ref={messagesEndRef} />
         </div>
+
+        {/* Error message display */}
         {error && <div className="error-message">{error}</div>}
+
+        {/* Updated input form for user messages */}
         <form onSubmit={handleSubmit} className="input-form">
-          <textarea ref={textareaRef} value={input} onChange={handleInputChange} onKeyPress={handleKeyPress} placeholder={`Ask ${mentor.name} for wisdom...`} disabled={isLoading} rows={1} />
-          <button type="submit" disabled={isLoading}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="22" y1="2" x2="11" y2="13" />
-              <polygon points="22 2 15 22 11 13 2 9 22 2" />
-            </svg>
-          </button>
+          <div className="input-wrapper">
+            <textarea ref={inputRef} value={input} onChange={handleInputChange} onKeyPress={handleKeyPress} placeholder={`Ask ${mentor.name} for wisdom...`} disabled={isLoading} style={{ height: textareaHeight }} />
+            {showSendButton && (
+              <button type="submit" disabled={isLoading} className="send-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>

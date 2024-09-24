@@ -45,7 +45,7 @@ const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 // Claude API endpoint
 const ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages";
 
-// Define prompts for each philosopher
+// Define prompts for each mentor
 const mentorPrompts = {
   seneca: `You are Seneca, the renowned Roman Stoic philosopher, statesman, and dramatist from the 1st century CE. Engage in dialogue with the user, offering wisdom and practical advice rooted in Stoic philosophy. Your responses should:
 
@@ -613,20 +613,29 @@ const mentorPrompts = {
 app.post("/api/chat", async (req, res) => {
   const { messages, mentor } = req.body;
 
-  console.log("Received messages:", messages);
+  console.log("Received messages:", JSON.stringify(messages, null, 2));
   console.log("Selected mentor:", mentor);
+
+  // Ensure messages alternate between user and assistant
+  const formattedMessages = messages.reduce((acc, message, index) => {
+    if (index === 0 || message.role !== acc[acc.length - 1].role) {
+      acc.push(message);
+    } else {
+      acc[acc.length - 1].content += "\n" + message.content;
+    }
+    return acc;
+  }, []);
 
   try {
     console.log("Sending request to Claude API...");
 
-    // Send request to Claude API
     const response = await axios.post(
       ANTHROPIC_API_URL,
       {
-        model: "claude-3-5-sonnet-20240620", // Specify Claude model
-        max_tokens: 150, // Limit response length
-        system: mentorPrompts[mentor], // Set system prompt based on selected mentor
-        messages: messages, // Use the entire conversation history
+        model: "claude-3-5-sonnet-20240620",
+        max_tokens: 100,
+        messages: formattedMessages,
+        system: mentorPrompts[mentor],
       },
       {
         headers: {
@@ -638,33 +647,26 @@ app.post("/api/chat", async (req, res) => {
     );
 
     console.log("Received response from Claude API");
+    console.log("Response data:", JSON.stringify(response.data, null, 2));
 
-    // Extract reply from Claude's response
     const reply = response.data.content[0].text;
-
-    // Send reply back to client
     res.json({ reply });
   } catch (error) {
     console.error("Detailed error:", error);
 
-    // Handle different types of errors
     if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
       console.error("Claude API response error:", error.response.data);
       res.status(error.response.status).json({
-        error: `Claude API error: ${error.response.data.error.message}`,
+        error: `Claude API error: ${error.response.data.error?.message || "Unknown error"}`,
         details: error.response.data,
       });
     } else if (error.request) {
-      // The request was made but no response was received
       console.error("No response received:", error.request);
       res.status(500).json({
         error: "No response received from Claude API",
         details: error.request,
       });
     } else {
-      // Something happened in setting up the request that triggered an Error
       console.error("Error setting up request:", error.message);
       res.status(500).json({
         error: `Error setting up request: ${error.message}`,
