@@ -5,10 +5,8 @@ const axios = require("axios");
 const dotenv = require("dotenv");
 const { MongoClient } = require("mongodb"); // Import MongoDB client
 
-// Load environment variables from .env file
-require("dotenv").config({
-  path: process.env.NODE_ENV === "production" ? ".env.production" : ".env.development",
-});
+// Load environment variables
+require("dotenv").config();
 
 // Initialize Express app
 const app = express();
@@ -32,7 +30,7 @@ async function connectToMongoDB() {
 // Set up CORS middleware
 app.use(
   cors({
-    origin: process.env.NODE_ENV === "production" ? "https://mentors-chat-app-frontend.onrender.com" : "http://localhost:3000",
+    origin: process.env.ALLOWED_ORIGINS,
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })
