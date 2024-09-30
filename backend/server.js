@@ -30,7 +30,7 @@ async function connectToMongoDB() {
 // Set up CORS middleware
 app.use(
   cors({
-    origin: "http://localhost:3000", // Allow requests from React frontend
+    origin: process.env.NODE_ENV === "development" ? "http://localhost:3000" : process.env.REACT_APP_API_URL, // Use localhost in development, and hosted URL in production
     methods: ["GET", "POST"], // Allow only GET and POST requests
     allowedHeaders: ["Content-Type"], // Allow Content-Type header
   })
