@@ -7,6 +7,8 @@ import "../styles/ChatPage.css";
 // Note: Make sure to update the import path if necessary
 import { mentors } from "./HomePage";
 
+const API_URL = "http://localhost:3001" || process.env.REACT_APP_API_URL;
+
 const ChatPage = () => {
   // State for messages displayed in the UI
   const [displayMessages, setDisplayMessages] = useState([]);
@@ -128,7 +130,7 @@ const ChatPage = () => {
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:3001/api/chat", {
+      const response = await axios.post(`${API_URL}/api/chat`, {
         messages: updatedHistory,
         mentor: mentorId,
       });

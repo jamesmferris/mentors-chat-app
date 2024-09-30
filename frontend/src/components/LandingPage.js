@@ -45,6 +45,8 @@ const mentors = [
   { name: "Beauvoir", image: beauvoirImage },
 ];
 
+const API_URL = "http://localhost:3001" || process.env.REACT_APP_API_URL;
+
 const LandingPage = () => {
   // State for landing page form inputs
   const [landingEmail, setLandingEmail] = useState("");
@@ -84,7 +86,7 @@ const LandingPage = () => {
   const handleLandingSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/api/signup", { email: landingEmail, password: landingPassword });
+      const response = await axios.post(`${API_URL}/api/signup`, { email: landingEmail, password: landingPassword });
       if (response.data.success) {
         navigate("/home"); // Redirect to home page on successful signup
       } else {
@@ -101,7 +103,7 @@ const LandingPage = () => {
     e.preventDefault();
     try {
       const endpoint = isLogin ? "login" : "signup";
-      const response = await axios.post(`http://localhost:3001/api/${endpoint}`, { email: modalEmail, password: modalPassword });
+      const response = await axios.post(`${API_URL}/api/${endpoint}`, { email: modalEmail, password: modalPassword });
       if (response.data.success) {
         navigate("/home"); // Redirect to home page on successful login/signup
       } else {
