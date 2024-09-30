@@ -6,7 +6,7 @@ Mentors is an interactive web application that allows users to engage in meaning
 
 You can access a live demo of Mentors here: https://mentors-chat-app-frontend.onrender.com
 
-**Note on Performance:** The live demo is hosted on Render's free tier, which may lead to dramatically slower load times and potential performance issues. For the best experience, we recommend setting up and running the application locally as described below.
+**Note on Performance:** The live demo is hosted on Render's free tier, which may lead to dramatically slower load times and potential performance issues. For the best experience, it's recommended to set up and run the application locally as described below.
 
 ## Features
 
