@@ -21,6 +21,7 @@ Mentors Chat is an interactive web application that allows users to engage in me
 ## Project Structure
 
 The project is divided into two main directories:
+
 - `frontend/`: Contains the React application
 - `backend/`: Contains the Node.js/Express server
 
@@ -34,14 +35,14 @@ The project is divided into two main directories:
 
 1. Clone the repository
 2. Install dependencies for both frontend and backend:
-    ```
-    cd frontend && npm install
-    cd ../backend && npm install
-    ```
+   ```
+   cd frontend && npm install
+   cd ../backend && npm install
+   ```
 3. Start the backend server:
-    ```
-    cd backend && npm start
-    ```
+   ```
+   cd backend && node server.js
+   ```
 4. Start the frontend development server:
    ```
    cd frontend && npm start
@@ -53,6 +54,7 @@ The project is divided into two main directories:
 This application comes pre-configured with both an Anthropic API key for Claude and a MongoDB database connection. There's no need for users to obtain or configure their own API keys or database connections.
 
 Please note:
+
 - All necessary credentials are securely stored on the backend and are not exposed to frontend users.
 - Usage is monitored and may be subject to rate limiting to ensure fair use for all users.
 - If you encounter any issues related to API access or database connectivity, please contact the project maintainer.
@@ -60,6 +62,7 @@ Please note:
 ## Frontend Components
 
 The main components of the frontend application include:
+
 - `LandingPage`: Handles user signup and provides an introduction to the application
 - `HomePage`: Displays the list of mentors with filtering options
 - `ChatPage`: Provides the interactive chat interface for conversations with mentors
@@ -88,11 +91,3 @@ This project is licensed under the MIT License.
 ## Disclaimer
 
 This application uses shared API keys and database connections for demonstration purposes. In a production environment, it's recommended to implement proper credential management, security measures, and usage monitoring.
-
-
-
-
-
-
-
-
