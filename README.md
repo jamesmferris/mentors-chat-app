@@ -1,6 +1,12 @@
-# Mentors Chat
+# Mentors
 
-Mentors Chat is an interactive web application that allows users to engage in meaningful conversations with AI-powered mentors inspired by history's greatest thinkers, leaders, and innovators. This application provides a unique platform for users to gain wisdom, explore ideas, and challenge their thinking through simulated dialogues with virtual mentors.
+Mentors is an interactive web application that allows users to engage in meaningful conversations with AI-powered mentors inspired by history's greatest thinkers, leaders, and innovators. This application provides a unique platform for users to gain wisdom, explore ideas, and challenge their thinking through simulated dialogues with virtual mentors.
+
+## Live Demo
+
+You can access a live demo of Mentors here: https://mentors-chat-app-frontend.onrender.com
+
+**Note on Performance:** The live demo is hosted on Render's free tier, which may lead to dramatically slower load times and potential performance issues. For the best experience, we recommend setting up and running the application locally as described below.
 
 ## Features
 
@@ -82,7 +88,7 @@ The application uses custom CSS for styling, with separate CSS files for each ma
 
 ## Contributing
 
-Contributions to Mentors Chat are welcome. Please ensure to follow the existing code style and submit pull requests for any new features or bug fixes.
+Contributions to Mentors are welcome. Please ensure to follow the existing code style and submit pull requests for any new features or bug fixes.
 
 ## License
 
