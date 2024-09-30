@@ -45,7 +45,7 @@ const mentors = [
   { name: "Beauvoir", image: beauvoirImage },
 ];
 
-const API_URL = "http://localhost:3001" || process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001"; // Default to localhost if REACT_APP_API_URL is not set
 
 const LandingPage = () => {
   // State for landing page form inputs
