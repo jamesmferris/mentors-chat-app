@@ -41,7 +41,7 @@ The project is divided into two main directories:
    ```
 3. Start the backend server:
    ```
-   cd backend && npm start
+   cd backend && node server.js
    ```
 4. Start the frontend development server:
    ```
