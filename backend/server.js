@@ -6,7 +6,9 @@ const dotenv = require("dotenv");
 const { MongoClient } = require("mongodb"); // Import MongoDB client
 
 // Load environment variables from .env file
-dotenv.config();
+require("dotenv").config({
+  path: process.env.NODE_ENV === "production" ? ".env.production" : ".env.development",
+});
 
 // Initialize Express app
 const app = express();
