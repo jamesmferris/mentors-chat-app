@@ -7,7 +7,7 @@ import "../styles/ChatPage.css";
 // Note: Make sure to update the import path if necessary
 import { mentors } from "./HomePage";
 
-const API_URL = "http://localhost:3001" || process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001"; // Default to localhost if REACT_APP_API_URL is not set
 
 const ChatPage = () => {
   // State for messages displayed in the UI

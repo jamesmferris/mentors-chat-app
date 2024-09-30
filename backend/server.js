@@ -32,20 +32,9 @@ async function connectToMongoDB() {
 // Set up CORS middleware
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (process.env.NODE_ENV === "development") {
-        // Allow localhost in development
-        callback(null, true);
-      } else if (origin === process.env.REACT_APP_API_URL) {
-        // Allow requests from the frontend hosted on Render
-        callback(null, true);
-      } else {
-        // Reject other origins
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST"], // Allow only GET and POST requests
-    allowedHeaders: ["Content-Type"], // Allow Content-Type header
+    origin: process.env.NODE_ENV === "production" ? "https://mentors-chat-app-frontend.onrender.com" : "http://localhost:3000",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
   })
 );
 
