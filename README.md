@@ -85,6 +85,7 @@ The application uses custom CSS for styling, with separate CSS files for each ma
 - Add more mentors and expand the range of topics
 - Integrate advanced natural language processing for more nuanced conversations
 - Implement a recommendation system for suggesting relevant mentors based on user interests
+- Adding FAQs and Terms of Service
 
 ## Contributing
 
